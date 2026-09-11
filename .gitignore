@@ -1,0 +1,11 @@
+# OS junk files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Office temp/lock files
+~$*
+*.tmp
+
+# Dropbox conflict copies
+*conflicted copy*
