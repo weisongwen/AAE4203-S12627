@@ -49,12 +49,15 @@ Upon completion of this subject, students will be able to:
 
 ```
 AAE4203-S12627/
-├── Lab1/                                        # Lab 1: GNSS Positioning (SPP analysis pipeline)
-│   ├── AAE4203_25_26_S1_Lab_Tutorial_1.pdf      # Lab tutorial (data collection & processing)
-│   ├── COM6___9600_250916_020025_blockz.ubx     # Sample raw UBX dataset
+├── Lab1/                                        # Lab 1 (Week 9): GNSS Positioning and Accuracy Challenge
+│   ├── AAE4203_26_27_S1_Lab_Tutorial.pdf        # Lab tutorial 2026/27 (theory, workflow, challenge rules)
+│   ├── AAE4203_Week9_GNSS_Lab_Slides.pdf        # Week 9 lab session slides
+│   ├── PolyU_AAE4203_Lab_report_template.docx   # Lab report template
+│   ├── COM6___9600_250916_020025_blockz.ubx     # Example raw UBX dataset (Block X, 2025)
 │   ├── pyubx2_csv_converter_gui.py              # UBX -> CSV converter (GUI)
 │   ├── rinex2csv.m                              # RINEX -> CSV MATLAB script
 │   ├── spp.conf                                 # RTKLIB SPP configuration
+│   ├── tools/check_submission.py                # Leaderboard CSV format checker
 │   ├── matRTKLIB/                               # MATLAB interface for RTKLIB
 │   └── examples/                                # Example figures & workflow
 ├── Lab2/                                        # Lab 2: Inertial Navigation and PDR
@@ -75,6 +78,7 @@ Weekly lecture slides and extra materials are released as the semester progresse
 
 - [Week 1](Week01/) — Mathematical Foundations for Guidance and Navigation - Part 1 (Sept 4)
 - [Week 2](Week02/) — Mathematical Foundations for Guidance and Navigation - Part 2 (Sept 11)
+- [Week 9](Lab1/) — Laboratory: GNSS Data Collection, Single Point Positioning and an Accuracy Challenge (Oct 30)
 
 > Materials for upcoming weeks will be posted after each lecture.
 
@@ -120,6 +124,7 @@ Weekly lecture slides and extra materials are released as the semester progresse
 
 ## 🔗 Resources
 
-- **Lab 1 Guide**: [GNSS Single Point Positioning (SPP) Analysis Pipeline](Lab1/Readme.md)
+- **Lab 1 Guide**: [GNSS Single Point Positioning (SPP) Analysis Pipeline](Lab1/Readme.md) · [Tutorial 2026/27 (PDF)](Lab1/AAE4203_26_27_S1_Lab_Tutorial.pdf)
+- **Lab 1 Leaderboard Platform**: [PolyU-TASLAB/AAE4203_ASN_2026](https://github.com/PolyU-TASLAB/AAE4203_ASN_2026)
 - **Lab 2 Guide**: [Inertial Navigation and PDR](Lab2/readme.md)
 - **Previous Year (2025-26 Semester 1)**: [AAE4203-S12526](https://github.com/weisongwen/AAE4203-S12526)

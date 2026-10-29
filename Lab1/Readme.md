@@ -7,23 +7,26 @@ A comprehensive toolkit for processing GNSS UBX data files and performing Single
 ## Table of Contents
 
 1. [Overview](#overview)  
-2. [Lab Requirements](#lab-requirements)  
-3. [Prerequisites](#prerequisites)  
-4. [Installation](#installation)  
-5. [Workflow Overview](#workflow-overview)
-6. [Step 0: GNSS Data Collection](#step-0-gnss-data-collection)
-7. [Step 1: UBX to RINEX Conversion](#step-1-ubx-to-rinex-conversion)
-8. [Step 2: RINEX Data Processing](#step-2-rinex-data-processing)  
-9. [Step 3: UBX to CSV Conversion](#step-3-ubx-to-csv-conversion)  
-10. [Step 4: SPP Analysis](#step-4-spp-analysis)  
-11. [Results and Visualization](#results-and-visualization)  
-12. [Output Files](#output-files)  
-13. [Troubleshooting](#troubleshooting)  
-14. [Technical Notes](#technical-notes)  
-15. [Contributing](#contributing)  
-16. [License](#license)  
-17. [References](#references)  
-18. [Contact](#contact)  
+2. [Lab Materials (2026/27)](#lab-materials-202627)  
+3. [Datasets](#datasets)  
+4. [Lab Requirements](#lab-requirements)  
+5. [Prerequisites](#prerequisites)  
+6. [Installation](#installation)  
+7. [Workflow Overview](#workflow-overview)
+8. [Step 0: GNSS Data Collection](#step-0-gnss-data-collection)
+9. [Step 1: UBX to RINEX Conversion](#step-1-ubx-to-rinex-conversion)
+10. [Step 2: RINEX Data Processing](#step-2-rinex-data-processing)  
+11. [Step 3: UBX to CSV Conversion](#step-3-ubx-to-csv-conversion)  
+12. [Step 4: SPP Analysis](#step-4-spp-analysis)  
+13. [Step 5: Accuracy Challenge and Leaderboard](#step-5-accuracy-challenge-and-leaderboard)  
+14. [Results and Visualization](#results-and-visualization)  
+15. [Output Files](#output-files)  
+16. [Troubleshooting](#troubleshooting)  
+17. [Technical Notes](#technical-notes)  
+18. [Contributing](#contributing)  
+19. [License](#license)  
+20. [References](#references)  
+21. [Contact](#contact)  
 
 ---
 
@@ -31,22 +34,59 @@ A comprehensive toolkit for processing GNSS UBX data files and performing Single
 
 This pipeline provides a complete workflow for GNSS data processing, from raw UBX file collection to advanced positioning analysis with error evaluation. The workflow includes data collection, data conversion, visualization, and statistical analysis of positioning accuracy.
 
+**New in 2026/27:** (i) an urban benchmark dataset from UrbanNav, (ii) a CSV submission ranked on a class leaderboard by horizontal RMSE, and (iii) explicit permission to use generative AI tools for coding, subject to the rules in the tutorial (Section 3.3).
+
+---
+
+## Lab Materials (2026/27)
+
+| File | Description |
+|------|-------------|
+| [AAE4203_26_27_S1_Lab_Tutorial.pdf](AAE4203_26_27_S1_Lab_Tutorial.pdf) | Full lab tutorial: theory, worked examples, data collection, processing, challenge rules (the group list is on Blackboard) |
+| [AAE4203_Week9_GNSS_Lab_Slides.pdf](AAE4203_Week9_GNSS_Lab_Slides.pdf) | Week 9 lab session slides |
+| [PolyU_AAE4203_Lab_report_template.docx](PolyU_AAE4203_Lab_report_template.docx) | Lab report template (Word) |
+| [tools/check_submission.py](tools/check_submission.py) | Checks the format of your leaderboard CSV before upload |
+| [rinex2csv.m](rinex2csv.m), [matRTKLIB/](matRTKLIB/) | RINEX -> CSV conversion (MATLAB) |
+| [pyubx2_csv_converter_gui.py](pyubx2_csv_converter_gui.py) | UBX -> CSV conversion (Python GUI) |
+| [COM6___9600_250916_020025_blockz.ubx](COM6___9600_250916_020025_blockz.ubx) | Example raw dataset (Block X, 2025) |
+
+---
+
+## Datasets
+
+| Dataset | Content | Ground truth | Purpose |
+|---------|---------|--------------|---------|
+| Own field data | UBX log recorded by your group (15–20 min, static) near Block X | none | Data collection, own-data validation and discussion in the report |
+| Example (Block X, 2025) | UBX log, RINEX .obs/.nav, CSV files from `rinex2csv.m`, receiver solution (NAV-HPPOSECEF), example Python code | reference results provided | Warm-up and regression test: check that your code reproduces the example results |
+| UrbanNav benchmark | `UrbanNav-HK-Deep-Urban-1.ublox.f9p.obs` and `UrbanNav_20210521_multiGNSS_clean.nav` | kept by the teaching team | Accuracy challenge and leaderboard |
+
+The example dataset, the example SPP code (`WLSE_spp.py`) and the benchmark files are linked on Blackboard.
+
 ---
 
 ## Lab Requirements
 
-At the end of this laboratory exercise, each group is required to submit a comprehensive lab report.  
-The report should include the following components:
+Each group submits the following deliverables:
 
-| Section | Requirements |
-|---------|--------------|
-| **1. Data Collection** | Describe the data collection process, including hardware setup, software tools used, and environmental conditions. |
-| **2. Raw Data Analysis** | Analyze collected raw data (e.g., received signals, observed satellites, GDOP, quality indicators). |
-| **3. SPP Algorithm** | Explain single-point positioning (SPP) principle with least squares estimation, including Python code. <br> *Optional*: Explore weight matrix optimization for accuracy improvement. |
-| **4. Results and Discussion** | Present positioning results, error analysis, and interpretation, including comparison with expected urban performance. |
-| **5. Submission Package** | Include raw data, lab report (PDF), Python scripts, and README in a GitHub repo. <br> Submit the repo link to lecturer & TA. |
+| Deliverable | Content | Where |
+|-------------|---------|-------|
+| Leaderboard entry | `GXX_benchmark.csv`: your trajectory for the benchmark dataset | TA's Google Drive folder (link on Blackboard) |
+| Own-data solution | `GXX_owndata.csv`: your trajectory for your own data (same format, not ranked) | Same folder |
+| Lab report | PDF, at most 10 pages excluding the cover; use the [report template](PolyU_AAE4203_Lab_report_template.docx) | Blackboard |
+| Code and data | GitHub repository with raw data, scripts and README.md; it must reproduce both CSV files | Link given in the report |
 
-📅 **Submission Deadline:** *TBA*
+The report must contain the following parts (code listings in the report: at most 2 pages):
+
+| Part | Required content |
+|------|------------------|
+| **1. Data collection** | Hardware and software set-up, site photos, time, environment and sky view near Block X. |
+| **2. Raw data analysis** | Satellites tracked per constellation, C/N₀, elevation and sky plot, DOP, other quality indicators. |
+| **3. SPP algorithm** | Measurement model, linearisation and weighted least squares; your Python implementation. |
+| **4. Own-data validation** | Your SPP compared with RTKPOST and with the receiver solution (mean and standard deviation of the E/N/U differences), scatter about the mean, input checks. |
+| **5. Benchmark results** | Each technique you tried, why, and its measured effect (ablation table); final 2D/3D RMSE, 95th percentile, availability and rank; discussion of urban effects. |
+| **6. AI-use statement** | Tools used, what they were used for, key prompts (appendix), and how the group verified the output. |
+
+📅 **Submission Deadline:** announced on Blackboard.
 
 ---
 
@@ -55,9 +95,9 @@ The report should include the following components:
 
 ### Software Requirements
 - **[u-center](https://www.u-blox.com/zh/product/u-center)** for data collection
-- **[MATLAB](https://www.mathworks.com/products/matlab.html)** with the following toolboxes:
+- **[MATLAB](https://www.mathworks.com/products/matlab.html)** (optional, the CSV files of the example dataset are provided) with the following toolboxes:
   - Mapping Toolbox
-- **[Python 3.7+](https://www.python.org/downloads/)** with the following packages:
+- **[Python 3.9+](https://www.python.org/downloads/)** with the following packages:
   - numpy
   - matplotlib
   - pandas
@@ -108,7 +148,7 @@ The complete pipeline consists of four main steps:
 ![Lab1 Workflow](examples/flow.png)
 
 ## Step 0: GNSS Data Collection
-For detailed GNSS data collection procedures, please refer to the [AAE4203_25_26_S1_Lab_Tutorial_1.pdf](AAE4203_25_26_S1_Lab_Tutorial_1.pdf).
+For detailed GNSS data collection procedures, please refer to Section 5 of the [AAE4203_26_27_S1_Lab_Tutorial.pdf](AAE4203_26_27_S1_Lab_Tutorial.pdf). Log 15–20 minutes of static data near Block X and name the file e.g. `G05_owndata_20261030.ubx`.
 
 ## Step 1: UBX to RINEX Conversion
 
@@ -223,15 +263,15 @@ The GUI provides:
 - Background processing to keep UI responsive
 - Error handling and status updates
 
-### 3.4 Key Output: Ground Truth Data
+### 3.4 Key Output: Receiver Reference Solution
 
-The conversion generates `NAV-HPPOSECEF.csv`, which contains high-precision positioning data that serves as ground truth for accuracy assessment.
+The conversion generates `NAV-HPPOSECEF.csv`, which contains the receiver's own high-precision ECEF solution. Without RTK corrections this is a standalone real-time solution that can be wrong by several metres in an urban canyon: use it as a reference for comparison, not as ground truth. Accuracy against a true trajectory is measured only on the benchmark dataset.
 
 ## Step 4: SPP Analysis
 
 ### 4.1 Configure Python Script
 
-Open `WLSE_spp.py` and verify the CSV file paths match your generated files:
+The example script `WLSE_spp.py` is provided with the example dataset (link on Blackboard). Open it and verify the CSV file paths match your generated files:
 
 ```python
 # Verify these file paths
@@ -258,6 +298,45 @@ The SPP implementation includes:
 - **Multi-iteration Convergence**: Iterative position refinement
 - **Comprehensive Error Correction**: Ionospheric, tropospheric, and clock corrections
 - **Robust Filtering**: Low elevation and poor signal quality masking
+
+## Step 5: Accuracy Challenge and Leaderboard
+
+Process the UrbanNav benchmark dataset with your best algorithm and submit one position per epoch. Verify every new version on the example dataset first.
+
+### 5.1 CSV File Format
+
+One header line, then one row per benchmark epoch in time order. Positions are WGS-84 ECEF coordinates in metres; no latitude/longitude and no extra columns.
+
+| Column | Meaning | Unit / format |
+|--------|---------|---------------|
+| `gps_week` | GPS week number | integer |
+| `gps_tow_s` | GPS time of week of the epoch | s, at least 1 decimal |
+| `x_ecef_m` | Estimated receiver position, ECEF X | m, 3 decimals |
+| `y_ecef_m` | Estimated receiver position, ECEF Y | m, 3 decimals |
+| `z_ecef_m` | Estimated receiver position, ECEF Z | m, 3 decimals |
+
+```text
+gps_week,gps_tow_s,x_ecef_m,y_ecef_m,z_ecef_m
+2158,455346.0,-2418202.586,5385847.524,2405648.799
+2158,455347.0,-2418202.174,5385847.238,2405648.952
+```
+
+File names: `GXX_benchmark.csv` and `GXX_owndata.csv`, where `XX` is your two-digit group number (G01–G20).
+
+### 5.2 Check and Upload
+
+```bash
+python tools/check_submission.py G05_benchmark.csv
+```
+
+Fix all errors, then upload both CSV files to your group's sub-folder in the TA's Google Drive folder (link on Blackboard). Replace the file whenever you have a better solution; only the latest `GXX_benchmark.csv` at the deadline is used for the final ranking. The leaderboard platform source code is available at [PolyU-TASLAB/AAE4203_ASN_2026](https://github.com/PolyU-TASLAB/AAE4203_ASN_2026).
+
+### 5.3 Ranking Rules
+
+- Errors are computed in the local East-North-Up frame at the ground-truth position, for epochs matched by GPS week and time of week (to 0.1 s).
+- Only submissions with availability ≥ 90 % are ranked.
+- Ranked submissions are ordered by 2D RMSE (smaller is better); ties are broken by 3D RMSE. The leaderboard also reports the 95th-percentile 2D error and availability.
+- Your repository must reproduce the submitted file; the teaching team may re-run the code of any group.
 
 ## Results and Visualization
 
