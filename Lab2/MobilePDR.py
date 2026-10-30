@@ -58,7 +58,7 @@ class MobilePDR:
         acc_filtered = filtfilt(b_low, a_low, acc_filtered)
         # Dynamic threshold detection
         window_size = int(0.5 * self.fs)  # 2-second window
-        min_peak_height = 1.0  # 可调
+        min_peak_height = 1.0  # tunable
         step_indices = []
         for i in range(window_size//2, len(acc_filtered) - window_size//2):
             window_data = acc_filtered[i-window_size//2:i+window_size//2+1]

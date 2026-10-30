@@ -1,178 +1,91 @@
-clc;
-clear;
-close all;
-
-addpath( fullfile('matRTKLIB') )
-
-%% Read RINEX observation/navigation file
-obs = gt.Gobs(fullfile('COM3___9600_251027_014142.obs'));
-nav = gt.Gnav(fullfile('COM3___9600_251027_014142.nav'));
-obs.plot;
-obs.plotNSat;
-obs.plotSky(nav);
-
-%% Settings for position computation
-SNR_TH = 15; % SNR threshold (dBHz)
-EL_TH = 10; % Elevation angle threshold (deg)
-obs.maskP(obs.L1.S<SNR_TH);
-
-
-%% Initials
-num_epochs = size(obs.L1.P, 1); % 
-nx = 3+1; % Position in ECEF and receiver clock [x,y,z,dtgps,dtother]'
-x = zeros(nx,1); % Initial position is center of the Earth
-xlog = NaN(obs.n,nx); % For logging solution
-xlog_llh=zeros(obs.n,3); % For logging solution in LLH
-llhref= [22.304139,114.180131,-20.20];
-%% Initialize cell arrays to store data for each epoch
-pseudoranges_meas_cell = cell(num_epochs, 1); % 
-satellite_positions_cell = cell(num_epochs, 1); % 
-satellite_clock_bias_cell = cell(num_epochs, 1); % 
-ionospheric_delay_cell = cell(num_epochs, 1); % 
-tropospheric_delay_cell = cell(num_epochs, 1); % 
-doppler_meas_cell = cell(num_epochs, 1); % 
-
-%% Loop over all epochs
-%% Point positioning
-
-for epoch = 1:num_epochs
-    obsc = obs.selectTime(epoch); % Current observation
-    obsc = obsc.selectSat(obsc.sys==1); % USE GPS Only
-    satc = gt.Gsat(obsc,nav); % Compute satellite position
-    % Repeat until convergence
-    for iter = 1:100
-        satc.setRcvPos(gt.Gpos(x(1:3)',"xyz")); % Set current receiver position
-        obsc = obsc.residuals(satc); % Compute pseudorange residuals at current position
-
-        % resP = obs.P-(rng-dts+ion+trp)-dtr-tgd
-
-        resP = obsc.L1.resPc-satc.ionL1-satc.trp-x(4)-nav.getTGD(satc.sat);
-
-        idx = ~isnan(resP) & satc.el>EL_TH & obsc.sys==1; % Index not NaN
-        % idx = ~isnan(resP) & satc.el>EL_TH;
-        nobs = nnz(idx); % Number of current observation
-        if nobs >= 4
-            % Simple elevation angle dependent weight model
-            varP90 = 0.5^2;
-            w = 1./(varP90./sind(satc.el(idx))); 
-            % w = ones(1,nobs);
-            sys = obsc.sys(idx);
-    
-            % Design matrix
-            H = zeros(nobs,nx);
-            H(:,1) = -satc.ex(idx)'; % LOS vector in ECEF X
-            H(:,2) = -satc.ey(idx)'; % LOS vector in ECEF Y
-            H(:,3) = -satc.ez(idx)'; % LOS vector in ECEF Z
-            H(:,4) = 1.0;           % Reciever clock
-    
-            % Weighted least square
-            % (y-H*x)'*diag(w)*(y-H*x)
-            y = resP(idx)';
-            dx = lscov(H,y,w); % position/clock error
-    
-            % Solution correction
-            x = x+dx;
-
-            % Exit loop after convergence 
-            if norm(dx)<1e-3
-                break;
-            end
-        else
-            fprintf("No Enough GPS\n");
-            x = NaN(nx,1);
-            break;
-        end
-    end
-     xlog(epoch,:) = x';
-  
-    fprintf("epoch=%d iter:%d\n",epoch,iter);
-    %% Extract the raw measurement for current epoch
-    p_l1 = obsc.L1.P;
-    sat_prn = obsc.sat; % Remove epoch indexing
-    sat_pos_x = satc.x;
-    sat_pos_y = satc.y;
-    sat_pos_z = satc.z;
-    sat_pos = [sat_pos_x; sat_pos_y; sat_pos_z];
-    sat_clock_err = satc.dts;
-    sat_pos = transpose(sat_pos);
-    p_l1 = transpose(p_l1);
-    sat_clock_err = transpose(sat_clock_err);
-    ion_error_l1 = satc.ionL1;
-    ion_error_l1 = transpose(ion_error_l1);
-    tropo_error = satc.trp;
-    tropo_error = transpose(tropo_error);
-    sat_sys = satc.sys; % Remove epoch indexing
-
-    %% Exclude NaN values
-    valid_idx = ~isnan(p_l1) & ~isnan(sat_pos(:,1)) & ~isnan(sat_pos(:,2)) & ~isnan(sat_pos(:,3));
-    if any(valid_idx)
-        p_l1 = p_l1(valid_idx);
-        sat_prn = sat_prn(valid_idx);
-        sat_pos = sat_pos(valid_idx,:);
-        sat_clock_err = sat_clock_err(valid_idx);
-        ion_error_l1 = ion_error_l1(valid_idx);
-        tropo_error = tropo_error(valid_idx);
-        sat_sys = sat_sys(valid_idx);
-    else
-        continue
-    end
-
-
-    %% Save data into cell arrays
-    pseudoranges_meas_cell{epoch} = p_l1;
-    satellite_positions_cell{epoch} = sat_pos; % Nx3 matrix
-    satellite_clock_bias_cell{epoch} = sat_clock_err;
-    ionospheric_delay_cell{epoch} = ion_error_l1;
-    tropospheric_delay_cell{epoch} = tropo_error;
-
-    %% Correct pseudorange measurements
-    p_l1_corrected = p_l1 + sat_clock_err - ion_error_l1 - tropo_error;
-
-
+function rinex2csv(obs_file, nav_file, out_dir)
+% GPS L1 teaching baseline: RINEX -> five measurement CSVs + epoch metadata.
+% Derived from GAO Yixin's MIT-licensed rinex2csv.m; original in legacy/.
+% No figures, no Mapping Toolbox, no ground-truth input. All paths explicit.
+% Example: rinex2csv('benchmark/...obs','benchmark/...nav','outputs/benchmark_inputs')
+if nargin ~= 3
+    error('Usage: rinex2csv(obs_file, nav_file, out_dir)');
 end
-
-%% After processing all epochs, write the data to CSV files
-
-% Find the maximum number of satellites across all epochs
-max_num_sats = max(cellfun(@(x) size(x,1), pseudoranges_meas_cell));
-
-% Initialize matrices with NaNs
-pseudoranges_meas_mat = NaN(max_num_sats, num_epochs);
-satellite_clock_bias_mat = NaN(max_num_sats, num_epochs);
-ionospheric_delay_mat = NaN(max_num_sats, num_epochs);
-tropospheric_delay_mat = NaN(max_num_sats, num_epochs);
-satellite_positions_mat = NaN(max_num_sats, num_epochs*3); % 3 columns per epoch
-
-% Fill the matrices with data from cell arrays
-for epoch = 1:num_epochs
-    p_l1 = pseudoranges_meas_cell{epoch};
-    sat_clock_err = satellite_clock_bias_cell{epoch};
-    ion_error_l1 = ionospheric_delay_cell{epoch};
-    tropo_error = tropospheric_delay_cell{epoch};
-    sat_pos = satellite_positions_cell{epoch};
-
-    num_sats = length(p_l1);
-
-    pseudoranges_meas_mat(1:num_sats, epoch) = p_l1;
-    satellite_clock_bias_mat(1:num_sats, epoch) = sat_clock_err;
-    ionospheric_delay_mat(1:num_sats, epoch) = ion_error_l1;
-    tropospheric_delay_mat(1:num_sats, epoch) = tropo_error;
-
-    satellite_positions_mat(1:num_sats, (epoch-1)*3+1 : epoch*3) = sat_pos;
+root = fileparts(mfilename('fullpath'));
+addpath(fullfile(root, 'matRTKLIB'));
+if ~isfile(obs_file) || ~isfile(nav_file)
+    error('Observation or navigation file does not exist.');
 end
-
-% Write the matrices to CSV files
-writematrix(pseudoranges_meas_mat, 'pseudoranges_meas.csv');
-writematrix(satellite_clock_bias_mat, 'satellite_clock_bias.csv');
-writematrix(ionospheric_delay_mat, 'ionospheric_delay.csv');
-writematrix(tropospheric_delay_mat, 'tropospheric_delay.csv');
-writematrix(satellite_positions_mat, 'satellite_positions.csv');
-
-%% Convert ECEF positions to LLH
-xlog_llh = ecef2lla(xlog(:,1:3), 'WGS84'); % [lat, lon, height] in degrees and meters
-
-%% Plot calculated receiver positions on a map
-posest = gt.Gpos(xlog(:,1:3),'xyz');
-posest.setOrg(llhref,"llh");
-posest.plot;
-title('LSE Trajectory');
+if ~isfolder(out_dir); mkdir(out_dir); end
+obs = gt.Gobs(obs_file);
+nav = gt.Gnav(nav_file);
+obs = obs.selectSat(obs.sys == 1); % GPS only: a single receiver clock state
+if obs.nsat < 4; error('Fewer than four GPS satellites in the file.'); end
+n = obs.n; m = obs.nsat;
+P = NaN(m,n); D = P; I = P; T = P; B = P; E = P;
+S = NaN(m,3*n);
+xlast = [];
+success = false(n,1);
+for k = 1:n
+    o = obs.selectTime(k);
+    sat = gt.Gsat(o,nav);
+    sp = [sat.x(:), sat.y(:), sat.z(:)];
+    pr = o.L1.P(:); clk = sat.dts(:);
+    tgd = nav.getTGD(sat.sat); tgd = tgd(:);
+    mask = isfinite(pr) & pr > 1e7 & isfinite(clk) & all(isfinite(sp),2) & sat.svh(:)==0;
+    if nnz(mask) < 4; continue; end
+    % Coarse observation-only solution, also used to recover after failed epochs.
+    if isempty(xlast); x = zeros(4,1); else; x = xlast; end
+    good = true;
+    for j = 1:15
+        delta = sp(mask,:) - x(1:3)';
+        range = vecnorm(delta,2,2);
+        H = [-delta ./ range, ones(nnz(mask),1)];
+        if rank(H)<4; good=false; break; end
+        dx = H \ (pr(mask)+clk(mask)-tgd(mask)-range-x(4));
+        x = x+dx;
+        if norm(dx)<1e-3; break; end
+    end
+    if ~good || ~all(isfinite(x)) || norm(x(1:3))<6.2e6 || norm(x(1:3))>6.5e6
+        continue;
+    end
+    % Iterate atmospheric corrections at an observation-derived approximate position.
+    % Unlike the old script, ionosphere/troposphere are subtracted exactly once.
+    converged = false;
+    for j = 1:20
+        sat.setRcvPos(gt.Gpos(x(1:3)', 'xyz'));
+        ion = sat.ionL1(:); trp = sat.trp(:); el = sat.el(:);
+        use = mask & isfinite(ion) & isfinite(trp) & el>=15 & o.L1.S(:)>=15;
+        if nnz(use)<4; break; end
+        H = [-sat.ex(use)', -sat.ey(use)', -sat.ez(use)', ones(nnz(use),1)];
+        if rank(H)<4; break; end
+        v = pr(use)+clk(use)-ion(use)-trp(use)-tgd(use)-sat.rng(use)'-x(4);
+        w = sind(el(use)).^2;
+        dx = lscov(H,v,w);
+        x = x+dx;
+        if norm(dx)<1e-3; converged=true; break; end
+    end
+    if ~converged; continue; end
+    xlast = x;
+    sat.setRcvPos(gt.Gpos(x(1:3)', 'xyz'));
+    el=sat.el(:); ion=sat.ionL1(:); trp=sat.trp(:);
+    use=mask & isfinite(ion) & isfinite(trp) & el>=15 & o.L1.S(:)>=15;
+    P(use,k)=pr(use); D(use,k)=clk(use); I(use,k)=ion(use); T(use,k)=trp(use);
+    B(use,k)=tgd(use); E(use,k)=el(use);
+    block=NaN(m,3); block(use,:)=sp(use,:); S(:,3*k-2:3*k)=block;
+    success(k)=true;
+    if mod(k,200)==0; fprintf('Converted %d/%d epochs\n',k,n); end
+end
+writematrix(P,fullfile(out_dir,'pseudoranges_meas.csv'));
+writematrix(D,fullfile(out_dir,'satellite_clock_bias.csv'));
+writematrix(I,fullfile(out_dir,'ionospheric_delay.csv'));
+writematrix(T,fullfile(out_dir,'tropospheric_delay.csv'));
+writematrix(S,fullfile(out_dir,'satellite_positions.csv'));
+writematrix(B,fullfile(out_dir,'group_delay.csv'));
+writematrix(E,fullfile(out_dir,'elevation_deg.csv'));
+epochs=table(obs.time.week(:),obs.time.tow(:),'VariableNames',{'gps_week','gps_tow_s'});
+writetable(epochs,fullfile(out_dir,'epochs.csv'));
+writetable(table(obs.satstr(:),'VariableNames',{'satellite_id'}),fullfile(out_dir,'satellites.csv'));
+fid=fopen(fullfile(out_dir,'conversion_summary.txt'),'w');
+fprintf(fid,'GPS L1 only; elevation >=15 deg; SNR >=15 dB-Hz.\n');
+fprintf(fid,'Input epochs: %d; converted: %d; omitted: %d.\n',n,nnz(success),n-nnz(success));
+fprintf(fid,'Atmosphere and TGD are separate arrays; satellite clocks are metres.\n');
+fprintf(fid,'Unsolved epochs remain NaN, never replaced by the previous position.\n');
+fclose(fid);
+fprintf('RINEX conversion complete: %d/%d epochs. Output: %s\n',nnz(success),n,out_dir);
+end

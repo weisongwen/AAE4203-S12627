@@ -1,0 +1,2 @@
+# Preserve exact bytes for reproducible SHA256 checks across operating systems.
+* -text

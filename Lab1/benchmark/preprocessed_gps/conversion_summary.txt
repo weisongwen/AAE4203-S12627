@@ -1,0 +1,4 @@
+GPS L1 only; elevation >=15 deg; SNR >=15 dB-Hz.
+Input epochs: 1534; converted: 1437; omitted: 97.
+Atmosphere and TGD are separate arrays; satellite clocks are metres.
+Unsolved epochs remain NaN, never replaced by the previous position.

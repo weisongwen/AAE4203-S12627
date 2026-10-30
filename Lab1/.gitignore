@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+outputs/
+*.asv
+*.log
+Thumbs.db
+.DS_Store
+~$*
+# Do not add teacher reference trajectories, credentials or student submissions.
+UrbanNav_whampoa_raw.txt
+*.private.csv
+secrets/
+config.toml

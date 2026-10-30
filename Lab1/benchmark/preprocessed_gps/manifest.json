@@ -1,0 +1,61 @@
+{
+  "generated_by": "rinex2csv.m",
+  "matlab_version": "R2023a",
+  "platform": "Windows x64",
+  "input_sha256": {
+    "UrbanNav-HK-Deep-Urban-1.ublox.f9p.obs": "b357a8b9847d50d8cd10cd9afdc5d80a046c050c7ded1748710ce784d90ce40a",
+    "UrbanNav_20210521_multiGNSS_clean.nav": "38c83f4007aab06a88074591054d511a4b132c2798ad90d85d7ead4bfca7cf88"
+  },
+  "converter_sha256": "88e5338ce4a3b42ea6136cc658517be41f8b226054974a0be364cfcdd443042f",
+  "settings": {
+    "systems": "GPS only",
+    "frequency": "L1",
+    "elevation_min_deg": 15,
+    "snr_min_dbhz": 15,
+    "epochs": 1534,
+    "converted_epochs": 1437,
+    "reference_trajectory_used": false
+  },
+  "files": [
+    {
+      "path": "conversion_summary.txt",
+      "sha256": "07d0ce529562ee8109e1dbc5e7a787de59fa3fab5106961d46c3ce8b2a3b2dd4"
+    },
+    {
+      "path": "elevation_deg.csv",
+      "sha256": "811fdf5ecad1a19244104f91b9d64a212a7477076d302a25dc1ed3f973178c7f"
+    },
+    {
+      "path": "epochs.csv",
+      "sha256": "b22f48a2641f46561c8dc0480bfe684a3c5b47a2d82098f8e96853c1e7709dd9"
+    },
+    {
+      "path": "group_delay.csv",
+      "sha256": "fc29343f7308cd483379c728112270d33e381c4ecbde6f569e12186ee3cec84d"
+    },
+    {
+      "path": "ionospheric_delay.csv",
+      "sha256": "1089f2275fb44c5dcbdc414ed4111927c85df1e703769f496cc65160521cd322"
+    },
+    {
+      "path": "pseudoranges_meas.csv",
+      "sha256": "adfd27741e3b28a0d4138ba77cb6912ff115aae5f27252a350d30817b69e1d98"
+    },
+    {
+      "path": "satellite_clock_bias.csv",
+      "sha256": "d4b7a81387f424ee71aa7503fd702ac98751f8dd2e2cc1c90ee57a4e2f973e50"
+    },
+    {
+      "path": "satellite_positions.csv",
+      "sha256": "556a4e294a8db844000424c4a5e50e1caedb266d226680f468f48178b090853c"
+    },
+    {
+      "path": "satellites.csv",
+      "sha256": "84423f6d07bf71f08c5cb39bb882499d6730d2f4d059650925887c70e05312bc"
+    },
+    {
+      "path": "tropospheric_delay.csv",
+      "sha256": "1d2d5bae7282b2cb14235319067155547183158328166f0cb26bb3faae4b02bf"
+    }
+  ]
+}
