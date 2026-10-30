@@ -68,8 +68,6 @@ AAE4203-S12627/
 │   ├── AAE4203 Lab2.pptx                        # Lab tutorial slides
 │   ├── MobilePDR.py                             # PDR algorithm implementation
 │   └── data/                                    # Sample datasets (RoundTrip, Square)
-├── Week01/                                      # Week 1 slides & materials
-├── Week02/                                      # Week 2 slides & materials (later weeks added progressively)
 ├── UIDemo.html                                  # Smartphone IMU data collection demo
 └── AAE4203_Teaching_Plan_2026-27_Semester_1.pdf # Official teaching plan
 ```
@@ -78,10 +76,8 @@ AAE4203-S12627/
 
 ## 🗂️ Weekly Materials
 
-Weekly lecture slides and extra materials are released as the semester progresses:
+Laboratory materials are released here as the semester progresses:
 
-- [Week 1](Week01/) — Mathematical Foundations for Guidance and Navigation - Part 1 (Sept 4)
-- [Week 2](Week02/) — Mathematical Foundations for Guidance and Navigation - Part 2 (Sept 11)
 - [Week 9](Lab1/) — Laboratory: GNSS Data Collection, Single Point Positioning and an Accuracy Challenge (Oct 30)
 
 > Materials for upcoming weeks will be posted after each lecture.
