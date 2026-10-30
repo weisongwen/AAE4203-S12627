@@ -71,7 +71,7 @@ This pipeline provides a complete workflow for GNSS data processing, from raw UB
 | [rinex2csv.m](rinex2csv.m), [matRTKLIB/](matRTKLIB/) | RINEX -> CSV conversion (MATLAB) |
 | [pyubx2_csv_converter_gui.py](pyubx2_csv_converter_gui.py) | UBX -> CSV conversion (Python GUI) |
 | [WLSE_spp.py](WLSE_spp.py) | Runnable weighted least-squares SPP for the example and benchmark inputs |
-| [example/](example/) | Example dataset (Block X, 2025): raw UBX log `blockx_2025.ubx`, RINEX, CSV inputs, receiver reference |
+| [example/](example/) | Example dataset (Block X, 2025): raw UBX log `blockx_2025.ubx`, RINEX, HK SatRef base station `hksc_2025.obs`, CSV inputs, receiver reference |
 | [benchmark/](benchmark/) | UrbanNav benchmark: RINEX observation and navigation files and GPS CSV inputs (no ground truth) |
 
 ---
@@ -81,7 +81,7 @@ This pipeline provides a complete workflow for GNSS data processing, from raw UB
 | Dataset | Content | Ground truth | Purpose |
 |---------|---------|--------------|---------|
 | Own field data | UBX log recorded by your group (15–20 min, static) near Block X | none | Data collection, own-data validation and discussion in the report |
-| Example (Block X, 2025) | UBX log, RINEX .obs/.nav, CSV files from `rinex2csv.m`, receiver solution (NAV-HPPOSECEF), example Python code | reference results provided | Warm-up and regression test: check that your code reproduces the example results |
+| Example (Block X, 2025) | UBX log, RINEX .obs/.nav, HK SatRef base-station .obs, CSV files from `rinex2csv.m`, receiver solution (NAV-HPPOSECEF), example Python code | reference results provided | Warm-up and regression test: check that your code reproduces the example results |
 | UrbanNav benchmark (HK-Deep-Urban-1) | `benchmark/urbannav_deep1.obs` and `benchmark/urbannav_deep1.nav` | reference trajectory kept by the teaching team | Accuracy challenge and leaderboard |
 
 The example data are included in [example/](example/), the runnable SPP entry point is [WLSE_spp.py](WLSE_spp.py), and the benchmark OBS/NAV and GPS input cache are in [benchmark/](benchmark/). Blackboard remains the official source of submission links and deadlines. The teaching reference trajectory is not included. UrbanNav itself is a public benchmark; see [data provenance](docs/DATA_SOURCES.md).

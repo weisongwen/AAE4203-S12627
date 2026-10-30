@@ -4,6 +4,7 @@
 
 Open a terminal (for example PowerShell) in the `Lab1` folder of the course repository.
 All relative paths below assume that `Lab1` is the current folder. Paths may contain spaces.
+The screenshots in the slides and the tutorial assume that the repository was cloned to `C:\AAE4203-S12627`; any other folder works in the same way.
 
 ```powershell
 python --version
@@ -39,6 +40,14 @@ python tools/check_submission.py outputs/example/G01_owndata.csv --epoch-file ex
 ```
 
 This file is a demonstration of the example dataset, not the field data of any group.
+
+RTKLIB on the example (optional, as in the slides):
+
+- RTKCONV: select `example/blockx_2025.ubx`, format u-blox, and tick the `.obs` and `.nav` outputs.
+- RTKPOST SPP: rover `example/blockx_2025.obs`, navigation `example/blockx_2025.nav`, positioning mode Single; the original result is `example/blockx_2025.pos`.
+- RTKPOST DGNSS: in addition select `example/hksc_2025.obs` as the base station, set the positioning mode to DGPS/DGNSS and take the base position from the RINEX header (Options, Positions). Write the result to `outputs/`.
+
+A command-line check with `rnx2rtkp` of RTKLIB-EX 2.5.0 (positioning mode 1, base position from the HKSC header) gave a DGNSS solution for 186/186 epochs.
 
 Additional check: if the raw example OBS/NAV files are converted again with the new `rinex2csv.m` and solved in `gps` mode, 113/186 epochs are solved and 73 epochs are omitted under the current GPS masks. The 2D/3D RMS differences from the receiver reference are about 15.393/82.106 m. This GPS route uses different inputs and models from the archived CSV files, so it is not expected to reproduce the numbers in the slides.
 

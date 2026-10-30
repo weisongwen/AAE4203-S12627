@@ -1,7 +1,7 @@
 {
-  "base_commit": "760b4acbc7542409889e618cd5c68a444a93671b",
+  "base_commit": "9d648e777ebcd1ceb35ca02c0c67845469689406",
   "description": "Lab1 package files; excludes runtime outputs and caches.",
-  "file_count": 649,
+  "file_count": 650,
   "files": [
     {
       "path": ".gitattributes",
@@ -15,13 +15,13 @@
     },
     {
       "path": "AAE4203_26_27_S1_Lab_Tutorial.pdf",
-      "bytes": 3686343,
-      "sha256": "97eb24d8d747806d285d81c94e206459af24b7eaa448c8d6a267498a36118615"
+      "bytes": 3669538,
+      "sha256": "2ecab9692a41a6fb65fb14718ad7c34e79c6bf38d7b540ffc29b138f6b1469f6"
     },
     {
       "path": "AAE4203_Week9_GNSS_Lab_Slides.pdf",
-      "bytes": 4505168,
-      "sha256": "9b53159d8975962881ded5848f1bc0e78be48f8171c04258886565ab6541dbbb"
+      "bytes": 4541326,
+      "sha256": "74488c69944f266085dfe2af7df22d6970fefaa7f209537979ee7be39ff8e57d"
     },
     {
       "path": "benchmark/gps_csv/conversion_summary.txt",
@@ -95,13 +95,13 @@
     },
     {
       "path": "docs/DATA_SOURCES.md",
-      "bytes": 3928,
-      "sha256": "1a85df9e2e25f9e3593d7b812173c000c4edaacaca8ca62a09663b860ff44a6c"
+      "bytes": 4350,
+      "sha256": "331e099ed5b864c37bc5e3dacb3fad35b9bcfb11f6b9989898c4a8b89aed531c"
     },
     {
       "path": "docs/RUNNING.md",
-      "bytes": 7103,
-      "sha256": "954bd8015cb44798606697ba5006c2218d0b30b785f5a395808ec823f9764fc5"
+      "bytes": 7955,
+      "sha256": "2d2e61845e92438735a6b346dc708c64fd01a654d23354a4c243b1a367b98b41"
     },
     {
       "path": "docs/VERIFICATION.md",
@@ -139,6 +139,11 @@
       "sha256": "f4a262c1af2d41cf427925bc60eb427f8fa1dea9b6b083eae357d45116c5ea6d"
     },
     {
+      "path": "example/hksc_2025.obs",
+      "bytes": 1895893,
+      "sha256": "774abee1d2b1104a1b5049a3a91919cf116437147302dd38f8d73647f46c90de"
+    },
+    {
       "path": "example/ionospheric_delay.csv",
       "bytes": 70415,
       "sha256": "83830c3ae5ae46a3f421cff1d1210e443750e64876380c79c38107546d3cc02d"
@@ -155,8 +160,8 @@
     },
     {
       "path": "example/README.md",
-      "bytes": 1187,
-      "sha256": "174c4bbb672774397d60e32c8aa19e506da8e96ad0bcde1790476a0c298ff15d"
+      "bytes": 1567,
+      "sha256": "d44c65799abc7ae48ed0aff26f706695264993dcb4343eb184e10d28e97bdc28"
     },
     {
       "path": "example/reference_results/estimated_positions.csv",
@@ -3200,8 +3205,8 @@
     },
     {
       "path": "Readme.md",
-      "bytes": 24760,
-      "sha256": "19fa9d1fc50de0bde98b0bde3742be41c8311b08252a037fdc5035c5c164247f"
+      "bytes": 24829,
+      "sha256": "1f320d729dbb510ab1cffe476771c834611eab13d223fc3a46d6e7871eca6481"
     },
     {
       "path": "requirements-optional.txt",

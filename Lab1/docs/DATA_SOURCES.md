@@ -10,6 +10,7 @@ From the 2025 lab repository [Gao-tech1/AAE4203-lab](https://github.com/Gao-tech
 - `epochs.csv` is extracted from the matching OBS file, not inferred from row numbers or dates. Submissions use a 0.1 s time grid.
 - `example/reference_results/` keeps the results of the original author; reproducing them numerically does not independently validate every physical model of the original algorithm.
 - The archived CSV files carry no satellite IDs or constellation labels, so they are not claimed to be GPS-only.
+- `example/hksc_2025.obs` is the base-station file for DGNSS: HK SatRef station HKSC (Lands Department, HKSAR), file `HKSC00HKG_R_20252590200_01H_01S_MO.crx.gz` from the [HK SatRef RINEX archive](https://rinex.geodetic.gov.hk/rinex3/2025/259/hksc/1s/), decompressed (Hatanaka) and cut to 02:00:30 to 02:04:30 GPST (241 epochs, RINEX 3.02). Only the header time fields were changed; the observation records are unchanged.
 
 The six numerical functions of the original Python solver are kept unchanged in `tools/legacy_solver.py`; the entry point `WLSE_spp.py` adds arguments, time matching, data checks and separate output folders.
 The original scripts are kept in `legacy/` for comparison.
