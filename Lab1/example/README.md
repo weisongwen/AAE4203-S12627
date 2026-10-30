@@ -5,7 +5,7 @@ The five measurement CSV files use one column per epoch (satellite positions use
 
 | Content | Files |
 | --- | --- |
-| Raw observations and navigation | `COM6___9600_250916_020025_blockz.obs` and the matching `.nav` |
+| Raw observations and navigation | `blockx_2025.obs` and the matching `.nav` |
 | Measurement inputs | `pseudoranges_meas.csv`, `satellite_positions.csv`, `satellite_clock_bias.csv`, `ionospheric_delay.csv`, `tropospheric_delay.csv` |
 | Actual observation times | `epochs.csv`, extracted from the matching OBS file |
 | Receiver reference | `NAV-HPPOSECEF.csv` (receiver solution, not a ground truth) |

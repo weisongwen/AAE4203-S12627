@@ -170,7 +170,7 @@ def write_results(folder, filename, rows, rejected, epochs, mode, reference=None
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--input-dir', type=Path, default=ROOT/'dataset')
+    parser.add_argument('--input-dir', type=Path, default=ROOT/'example')
     parser.add_argument('--output-dir', type=Path, default=ROOT/'outputs/example')
     parser.add_argument('--submission', default='G01_owndata.csv')
     parser.add_argument('--mode', choices=['historical', 'gps'], default='historical')
@@ -178,7 +178,7 @@ def main():
     args = parser.parse_args()
     if Path(args.submission).name != args.submission or not args.submission.endswith('.csv'):
         parser.error('--submission must be a CSV filename, not a path')
-    if args.mode == 'historical' and args.input_dir.resolve() != (ROOT/'dataset').resolve():
+    if args.mode == 'historical' and args.input_dir.resolve() != (ROOT/'example').resolve():
         parser.error('Historical mode is only for the included 186-epoch dataset; use --mode gps for new GPS inputs')
     arrays, epochs = read_inputs(args.input_dir)
     rows, rejected = run(arrays, epochs, args.mode)

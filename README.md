@@ -53,18 +53,17 @@ AAE4203-S12627/
 │   ├── AAE4203_26_27_S1_Lab_Tutorial.pdf        # Lab tutorial 2026/27 (theory, workflow, challenge rules)
 │   ├── AAE4203_Week9_GNSS_Lab_Slides.pdf        # Week 9 lab session slides
 │   ├── PolyU_AAE4203_Lab_report_template.docx   # Lab report template
-│   ├── COM6___9600_250916_020025_blockz.ubx     # Example raw UBX dataset (Block X, 2025)
 │   ├── WLSE_spp.py                              # Runnable weighted least-squares SPP (example and benchmark)
 │   ├── pyubx2_csv_converter_gui.py              # UBX -> CSV converter (GUI)
 │   ├── rinex2csv.m                              # RINEX -> CSV MATLAB function
 │   ├── spp.conf                                 # RTKLIB SPP configuration
-│   ├── dataset/                                 # Example dataset (Block X, 2025): RINEX, CSV inputs, receiver reference
-│   ├── benchmark/                               # UrbanNav benchmark: OBS/NAV and preprocessed GPS inputs (no ground truth)
+│   ├── example/                                 # Example dataset (Block X, 2025): UBX, RINEX, CSV inputs, receiver reference
+│   ├── benchmark/                               # UrbanNav benchmark: OBS/NAV and GPS CSV inputs (no ground truth)
 │   ├── tools/                                   # check_submission.py (CSV checker), verify_package.py (self-test)
 │   ├── docs/                                    # Running instructions, verification and data sources
 │   ├── legacy/                                  # Original 2025 and course scripts, for comparison
 │   ├── matRTKLIB/                               # MATLAB interface for RTKLIB
-│   └── examples/                                # Example figures & workflow
+│   └── figures/                                 # Example figures & workflow
 ├── Lab2/                                        # Lab 2: Inertial Navigation and PDR
 │   ├── AAE4203 Lab2.pptx                        # Lab tutorial slides
 │   ├── MobilePDR.py                             # PDR algorithm implementation

@@ -3,8 +3,8 @@
   "matlab_version": "R2023a",
   "platform": "Windows x64",
   "input_sha256": {
-    "UrbanNav-HK-Deep-Urban-1.ublox.f9p.obs": "b357a8b9847d50d8cd10cd9afdc5d80a046c050c7ded1748710ce784d90ce40a",
-    "UrbanNav_20210521_multiGNSS_clean.nav": "38c83f4007aab06a88074591054d511a4b132c2798ad90d85d7ead4bfca7cf88"
+    "urbannav_deep1.obs": "b357a8b9847d50d8cd10cd9afdc5d80a046c050c7ded1748710ce784d90ce40a",
+    "urbannav_deep1.nav": "38c83f4007aab06a88074591054d511a4b132c2798ad90d85d7ead4bfca7cf88"
   },
   "converter_sha256": "88e5338ce4a3b42ea6136cc658517be41f8b226054974a0be364cfcdd443042f",
   "settings": {

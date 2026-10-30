@@ -16,7 +16,7 @@ If `python` is not found, try `py -3` or the full path of the Python interpreter
 ## 2 Run the example dataset
 
 ```powershell
-python WLSE_spp.py --reference dataset/NAV-HPPOSECEF.csv
+python WLSE_spp.py --reference example/NAV-HPPOSECEF.csv
 ```
 
 Outputs:
@@ -35,7 +35,7 @@ These numbers are differences from the receiver solution; the receiver solution 
 Check the submission format (the original one-argument call still works; the options below also check the actual observation times):
 
 ```powershell
-python tools/check_submission.py outputs/example/G01_owndata.csv --epoch-file dataset/epochs.csv
+python tools/check_submission.py outputs/example/G01_owndata.csv --epoch-file example/epochs.csv
 ```
 
 This file is a demonstration of the example dataset, not the field data of any group.
@@ -47,8 +47,8 @@ Additional check: if the raw example OBS/NAV files are converted again with the 
 Quick route without MATLAB:
 
 ```powershell
-python WLSE_spp.py --mode gps --input-dir benchmark/preprocessed_gps --output-dir outputs/benchmark --submission G01_benchmark.csv
-python tools/check_submission.py outputs/benchmark/G01_benchmark.csv --week 2158 --epoch-file benchmark/preprocessed_gps/epochs.csv
+python WLSE_spp.py --mode gps --input-dir benchmark/gps_csv --output-dir outputs/benchmark --submission G01_benchmark.csv
+python tools/check_submission.py outputs/benchmark/G01_benchmark.csv --week 2158 --epoch-file benchmark/gps_csv/epochs.csv
 ```
 
 The program reads only the measurement CSV files, satellite positions, corrections and OBS times. No ground truth is needed.
@@ -57,8 +57,8 @@ The program reads only the measurement CSV files, satellite positions, correctio
 To repeat the RINEX conversion, open MATLAB with `Lab1` as the current folder and run:
 
 ```matlab
-rinex2csv('benchmark/UrbanNav-HK-Deep-Urban-1.ublox.f9p.obs', ...
-          'benchmark/UrbanNav_20210521_multiGNSS_clean.nav', ...
+rinex2csv('benchmark/urbannav_deep1.obs', ...
+          'benchmark/urbannav_deep1.nav', ...
           'outputs/benchmark_inputs');
 ```
 
@@ -100,7 +100,7 @@ python -m pip install -r requirements-optional.txt
 python pyubx2_csv_converter_gui.py
 ```
 
-Select `COM6___9600_250916_020025_blockz.ubx` in the `Lab1` folder and write the output to `outputs/receiver`.
+Select `example/blockx_2025.ubx` and write the output to `outputs/receiver`.
 A conversion of this file without the GUI produced a 186-row `NAV-HPPOSECEF.csv`; the GUI buttons have not been tested separately.
 
 ## 6 Troubleshooting
@@ -113,7 +113,7 @@ A conversion of this file without the GUI produced a 186-row `NAV-HPPOSECEF.csv`
 | MEX file cannot be loaded | Check that MATLAB and the operating system match the precompiled files; see the toolbox README |
 | Fewer than 4 usable satellites | The epoch may be omitted; see the conversion summary and `omitted_epochs.csv`; never invent a position |
 | Benchmark file only passes the format check | The error can only be computed by the TA server; this package contains no ground truth and cannot predict the rank |
-| Output differs from the slides | Make sure you used `historical` mode with the 186-epoch inputs in `dataset/`; the new GPS baseline does not reproduce the historical numbers |
+| Output differs from the slides | Make sure you used `historical` mode with the 186-epoch inputs in `example/`; the new GPS baseline does not reproduce the historical numbers |
 
 `legacy/` keeps the old scripts for comparison. They contain fixed file paths, plotting dependencies and a risk of mixing datasets; use the entry points in the `Lab1` folder for normal work.
 

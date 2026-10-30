@@ -1,5 +1,5 @@
 {
-  "base_commit": "ead5920dd0561d2beaf9ca2c15a899b337d825d1",
+  "base_commit": "760b4acbc7542409889e618cd5c68a444a93671b",
   "description": "Lab1 package files; excludes runtime outputs and caches.",
   "file_count": 649,
   "files": [
@@ -15,216 +15,216 @@
     },
     {
       "path": "AAE4203_26_27_S1_Lab_Tutorial.pdf",
-      "bytes": 4094576,
-      "sha256": "5835e33a006e0f3e0232b9d5b576402f69e1f745afa5c45c1b33595481e27779"
+      "bytes": 3686343,
+      "sha256": "97eb24d8d747806d285d81c94e206459af24b7eaa448c8d6a267498a36118615"
     },
     {
       "path": "AAE4203_Week9_GNSS_Lab_Slides.pdf",
-      "bytes": 4567948,
-      "sha256": "62e4e65362d06277e6898a8ae627efdb318d73804006f0411d3560ae3cf51eac"
+      "bytes": 4505168,
+      "sha256": "9b53159d8975962881ded5848f1bc0e78be48f8171c04258886565ab6541dbbb"
     },
     {
-      "path": "benchmark/preprocessed_gps/conversion_summary.txt",
+      "path": "benchmark/gps_csv/conversion_summary.txt",
       "bytes": 237,
       "sha256": "07d0ce529562ee8109e1dbc5e7a787de59fa3fab5106961d46c3ce8b2a3b2dd4"
     },
     {
-      "path": "benchmark/preprocessed_gps/elevation_deg.csv",
+      "path": "benchmark/gps_csv/elevation_deg.csv",
       "bytes": 169759,
       "sha256": "811fdf5ecad1a19244104f91b9d64a212a7477076d302a25dc1ed3f973178c7f"
     },
     {
-      "path": "benchmark/preprocessed_gps/epochs.csv",
+      "path": "benchmark/gps_csv/epochs.csv",
       "bytes": 26098,
       "sha256": "b22f48a2641f46561c8dc0480bfe684a3c5b47a2d82098f8e96853c1e7709dd9"
     },
     {
-      "path": "benchmark/preprocessed_gps/group_delay.csv",
+      "path": "benchmark/gps_csv/group_delay.csv",
       "bytes": 177141,
       "sha256": "fc29343f7308cd483379c728112270d33e381c4ecbde6f569e12186ee3cec84d"
     },
     {
-      "path": "benchmark/preprocessed_gps/ionospheric_delay.csv",
+      "path": "benchmark/gps_csv/ionospheric_delay.csv",
       "bytes": 169684,
       "sha256": "1089f2275fb44c5dcbdc414ed4111927c85df1e703769f496cc65160521cd322"
     },
     {
-      "path": "benchmark/preprocessed_gps/manifest.json",
-      "bytes": 2056,
-      "sha256": "5c65b75857f86fb41c97f6376a7fc414db7e07e8c1b6b9fe72a86b9738f9c6a2"
+      "path": "benchmark/gps_csv/manifest.json",
+      "bytes": 2017,
+      "sha256": "b42f765423c12b00bf0d1fbffc76ddebe4aeec9b191a34c87191a62f416b625c"
     },
     {
-      "path": "benchmark/preprocessed_gps/pseudoranges_meas.csv",
+      "path": "benchmark/gps_csv/pseudoranges_meas.csv",
       "bytes": 138039,
       "sha256": "adfd27741e3b28a0d4138ba77cb6912ff115aae5f27252a350d30817b69e1d98"
     },
     {
-      "path": "benchmark/preprocessed_gps/satellite_clock_bias.csv",
+      "path": "benchmark/gps_csv/satellite_clock_bias.csv",
       "bytes": 171007,
       "sha256": "d4b7a81387f424ee71aa7503fd702ac98751f8dd2e2cc1c90ee57a4e2f973e50"
     },
     {
-      "path": "benchmark/preprocessed_gps/satellite_positions.csv",
+      "path": "benchmark/gps_csv/satellite_positions.csv",
       "bytes": 514973,
       "sha256": "556a4e294a8db844000424c4a5e50e1caedb266d226680f468f48178b090853c"
     },
     {
-      "path": "benchmark/preprocessed_gps/satellites.csv",
+      "path": "benchmark/gps_csv/satellites.csv",
       "bytes": 69,
       "sha256": "84423f6d07bf71f08c5cb39bb882499d6730d2f4d059650925887c70e05312bc"
     },
     {
-      "path": "benchmark/preprocessed_gps/tropospheric_delay.csv",
+      "path": "benchmark/gps_csv/tropospheric_delay.csv",
       "bytes": 169608,
       "sha256": "1d2d5bae7282b2cb14235319067155547183158328166f0cb26bb3faae4b02bf"
     },
     {
       "path": "benchmark/README.md",
-      "bytes": 1007,
-      "sha256": "a24c85374d5ae31b7a4599d4825838742afe03ebdd68a0c489588261986e5686"
+      "bytes": 959,
+      "sha256": "93ac0931f2e407768992ba0a3121c02fb827567d21f63ce482aba9e94dfe20d0"
     },
     {
-      "path": "benchmark/UrbanNav-HK-Deep-Urban-1.ublox.f9p.obs",
-      "bytes": 5760685,
-      "sha256": "b357a8b9847d50d8cd10cd9afdc5d80a046c050c7ded1748710ce784d90ce40a"
-    },
-    {
-      "path": "benchmark/UrbanNav_20210521_multiGNSS_clean.nav",
+      "path": "benchmark/urbannav_deep1.nav",
       "bytes": 1547657,
       "sha256": "38c83f4007aab06a88074591054d511a4b132c2798ad90d85d7ead4bfca7cf88"
     },
     {
-      "path": "COM6___9600_250916_020025_blockz.ubx",
-      "bytes": 3425447,
-      "sha256": "e6955de459485f425a5bdf7f4cf799346a0f11d55ddcfd263c8c6111c28951a7"
+      "path": "benchmark/urbannav_deep1.obs",
+      "bytes": 5760685,
+      "sha256": "b357a8b9847d50d8cd10cd9afdc5d80a046c050c7ded1748710ce784d90ce40a"
     },
     {
-      "path": "dataset/COM6___9600_250916_020025_blockz.kml",
+      "path": "docs/DATA_SOURCES.md",
+      "bytes": 3928,
+      "sha256": "1a85df9e2e25f9e3593d7b812173c000c4edaacaca8ca62a09663b860ff44a6c"
+    },
+    {
+      "path": "docs/RUNNING.md",
+      "bytes": 7103,
+      "sha256": "954bd8015cb44798606697ba5006c2218d0b30b785f5a395808ec823f9764fc5"
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "bytes": 4009,
+      "sha256": "decc160203649b8901e2ea7e3fd6704e8d3206650cb9bfc5b0bce90024fd1f52"
+    },
+    {
+      "path": "example/blockx_2025.kml",
       "bytes": 10640,
       "sha256": "ef9ff0ab7e83775055a9340009b81055d247c9c61bfe1649e882badcc61e3882"
     },
     {
-      "path": "dataset/COM6___9600_250916_020025_blockz.nav",
+      "path": "example/blockx_2025.nav",
       "bytes": 17620,
       "sha256": "d360a2886ca20d5b5aebe0926fcb0281fcdc521a4517656a0bf1dd21817fa870"
     },
     {
-      "path": "dataset/COM6___9600_250916_020025_blockz.obs",
+      "path": "example/blockx_2025.obs",
       "bytes": 681348,
       "sha256": "6b4bf5ff9d7440e071255adf58b83438927622ad94add374761a14507d1ba664"
     },
     {
-      "path": "dataset/COM6___9600_250916_020025_blockz.pos",
+      "path": "example/blockx_2025.pos",
       "bytes": 27176,
       "sha256": "71948f6e32cf20f2444aa780a60969c0e23bf4716bde5bb1df65bb91fa26f1c3"
     },
     {
-      "path": "dataset/epochs.csv",
+      "path": "example/blockx_2025.ubx",
+      "bytes": 3425447,
+      "sha256": "e6955de459485f425a5bdf7f4cf799346a0f11d55ddcfd263c8c6111c28951a7"
+    },
+    {
+      "path": "example/epochs.csv",
       "bytes": 3740,
       "sha256": "f4a262c1af2d41cf427925bc60eb427f8fa1dea9b6b083eae357d45116c5ea6d"
     },
     {
-      "path": "dataset/ionospheric_delay.csv",
+      "path": "example/ionospheric_delay.csv",
       "bytes": 70415,
       "sha256": "83830c3ae5ae46a3f421cff1d1210e443750e64876380c79c38107546d3cc02d"
     },
     {
-      "path": "dataset/NAV-HPPOSECEF.csv",
+      "path": "example/NAV-HPPOSECEF.csv",
       "bytes": 12151,
       "sha256": "056e133a797a4220d2dfd2d495c044839fa6e210f6ff5d0c39fea2bbab23c41d"
     },
     {
-      "path": "dataset/pseudoranges_meas.csv",
+      "path": "example/pseudoranges_meas.csv",
       "bytes": 54595,
       "sha256": "cc1a488349edf7b3a267c5585d812fb4fca62c8c77eae64bcae6a8be89c17b27"
     },
     {
-      "path": "dataset/README.md",
-      "bytes": 1208,
-      "sha256": "23c565f35ad093f15c1a76a046f4d6865e574c11677fa4b613baa525e21f01cd"
+      "path": "example/README.md",
+      "bytes": 1187,
+      "sha256": "174c4bbb672774397d60e32c8aa19e506da8e96ad0bcde1790476a0c298ff15d"
     },
     {
-      "path": "dataset/reference_results/estimated_positions.csv",
+      "path": "example/reference_results/estimated_positions.csv",
       "bytes": 35611,
       "sha256": "2766660aef1165c3a52b5233156eeda9ae8ad33ca62af67cecdd09336e438eb3"
     },
     {
-      "path": "dataset/reference_results/positioning_errors.csv",
+      "path": "example/reference_results/positioning_errors.csv",
       "bytes": 18021,
       "sha256": "100886abc2afd217d2f89b5ead5edbd91091fee9aabd3b6893efe693ef7e8441"
     },
     {
-      "path": "dataset/satellite_clock_bias.csv",
+      "path": "example/satellite_clock_bias.csv",
       "bytes": 72989,
       "sha256": "937e052eaa21561cb16a3c87fab804220609e8e0edbb77022186d6b5900b7ab9"
     },
     {
-      "path": "dataset/satellite_positions.csv",
+      "path": "example/satellite_positions.csv",
       "bytes": 216018,
       "sha256": "cb70e81e638ca436045e9007c2b1fb76e0be24463800478f3849b5445e7e0907"
     },
     {
-      "path": "dataset/tropospheric_delay.csv",
+      "path": "example/tropospheric_delay.csv",
       "bytes": 70379,
       "sha256": "4383bcdbfc372f8bc8fb1e6ccf24d95b3a91bf021e34acba8f5c84db58f26b19"
     },
     {
-      "path": "docs/DATA_SOURCES.md",
-      "bytes": 4019,
-      "sha256": "094fe9a45f10b340e2e3e36379b65f7c2b82fe68567e6fcecce57cb41ba89b97"
-    },
-    {
-      "path": "docs/RUNNING.md",
-      "bytes": 7194,
-      "sha256": "2b1d4c6de6fdb3f4f31a8de07a0246089972d611844d53d008979ceacc37d54e"
-    },
-    {
-      "path": "docs/VERIFICATION.md",
-      "bytes": 4066,
-      "sha256": "3e61d8e219b5d9dcbd55c8010bc4aef34d048079a24520b13fdf782008ac3001"
-    },
-    {
-      "path": "examples/Figure_1.png",
+      "path": "figures/Figure_1.png",
       "bytes": 122593,
       "sha256": "b7942e36ab419c69993f570c9ec468b32cb628cd6695ea65571b14bc08f55958"
     },
     {
-      "path": "examples/Figure_2.png",
+      "path": "figures/Figure_2.png",
       "bytes": 149644,
       "sha256": "40e5860142b02604da5a3346827baeb2e63a668157e40106545293510d0cf1a2"
     },
     {
-      "path": "examples/Figure_3.png",
+      "path": "figures/Figure_3.png",
       "bytes": 43843,
       "sha256": "5ab80e88efa53d9962de4e5ff4527007f35a0f46a18f475acec456710d6a1e99"
     },
     {
-      "path": "examples/Figure_4.png",
+      "path": "figures/Figure_4.png",
       "bytes": 110371,
       "sha256": "1d186f1762c72d786e8fefaa23b11f8c8531412db8f828505c35762992430bba"
     },
     {
-      "path": "examples/flow.png",
+      "path": "figures/flow.png",
       "bytes": 1667801,
       "sha256": "96788b58eb3218a7bb96f7c0596183584d546084c38ca31daaa30161e1f332d0"
     },
     {
-      "path": "examples/rinex2csv1.png",
+      "path": "figures/rinex2csv1.png",
       "bytes": 282861,
       "sha256": "f5534a34e2a59c45f0d69c63a2eee1d67b6cf551e5e0489baabad7648c6cf9a2"
     },
     {
-      "path": "examples/rinex2csv2.png",
+      "path": "figures/rinex2csv2.png",
       "bytes": 67122,
       "sha256": "397140c74f9304a6ff890a195535fc12cf42b74e92d35cda67650559ecd5531f"
     },
     {
-      "path": "examples/rinex2csv3.png",
+      "path": "figures/rinex2csv3.png",
       "bytes": 71462,
       "sha256": "5a9143abf8d389e33e332ff28297a676b87eaef9e60305225cbbc4896671524d"
     },
     {
-      "path": "examples/rinex2csv4.png",
+      "path": "figures/rinex2csv4.png",
       "bytes": 54749,
       "sha256": "dc7b12bf2624527cc4812cf2a8aa102332a0e0f8b1c785ffa530af118589cdbc"
     },
@@ -3190,8 +3190,8 @@
     },
     {
       "path": "PolyU_AAE4203_Lab_report_template.docx",
-      "bytes": 95888,
-      "sha256": "0f14757e33469020a54c7f8c4682fe0dcd11cb900fb44fbc0597580dca21c3ea"
+      "bytes": 93719,
+      "sha256": "a0f1b6093d6cab4c968eb986f4635186c021d34752291b5436c72cac51aca87b"
     },
     {
       "path": "pyubx2_csv_converter_gui.py",
@@ -3200,8 +3200,8 @@
     },
     {
       "path": "Readme.md",
-      "bytes": 24353,
-      "sha256": "0e9c7512a22e719fc2232f7d0f061a2b482f5cf8dd5b337d1d288a003c98b7e3"
+      "bytes": 24760,
+      "sha256": "19fa9d1fc50de0bde98b0bde3742be41c8311b08252a037fdc5035c5c164247f"
     },
     {
       "path": "requirements-optional.txt",
@@ -3240,13 +3240,13 @@
     },
     {
       "path": "tools/verify_package.py",
-      "bytes": 5640,
-      "sha256": "42dbbb68dece3b1594283ce079ef6e7d88c7dc1fa4d0492599b34a1956ea4574"
+      "bytes": 5631,
+      "sha256": "3b4358d79886c701f3e45f9d2adad6567319a6c5cd824964e34e641713988c0d"
     },
     {
       "path": "WLSE_spp.py",
       "bytes": 9575,
-      "sha256": "5c6c8febaf0658ed003998254f130f1629699ebc36b166c84cc3d79441234d78"
+      "sha256": "9efcb167aa61ab77921340bff36458c78b41c02773ca78cd2568703a4435a2ef"
     }
   ]
 }

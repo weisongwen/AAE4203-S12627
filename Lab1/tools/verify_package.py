@@ -17,15 +17,15 @@ from tools.check_submission import check
 
 
 def main():
-    arrays, epochs = spp.read_inputs(ROOT/'dataset')
+    arrays, epochs = spp.read_inputs(ROOT/'example')
     rows, omitted = spp.run(arrays, epochs, 'historical')
-    expected = np.genfromtxt(ROOT/'dataset/reference_results/estimated_positions.csv',
+    expected = np.genfromtxt(ROOT/'example/reference_results/estimated_positions.csv',
                              delimiter=',', names=True)
     reference = np.column_stack([expected[k] for k in ['ECEF_X_m','ECEF_Y_m','ECEF_Z_m']])
     actual = np.array([r['position'] for r in rows])
     max_diff = float(np.max(np.abs(actual-reference)))
     assert len(rows)==186 and not omitted and max_diff < 1e-5, max_diff
-    metrics = spp.reference_metrics(rows,ROOT/'dataset/NAV-HPPOSECEF.csv',epochs)
+    metrics = spp.reference_metrics(rows,ROOT/'example/NAV-HPPOSECEF.csv',epochs)
     assert abs(metrics['rmse_2d_m']-37.9107584162)<1e-6
     assert abs(metrics['rmse_3d_m']-51.0428443069)<1e-6
     print('PASS historical: 186 epochs; max ECEF delta',max_diff)
@@ -52,7 +52,7 @@ def main():
     with tempfile.TemporaryDirectory(dir=out) as d:
         d=Path(d)
         spp.write_results(d,'G01_owndata.csv',rows,[],epochs,'historical')
-        errors,n,cov=check(d/'G01_owndata.csv',epoch_file=ROOT/'dataset/epochs.csv')
+        errors,n,cov=check(d/'G01_owndata.csv',epoch_file=ROOT/'example/epochs.csv')
         assert not errors and n==186 and cov==100
         original=(d/'G01_owndata.csv').read_text()
         cases={'duplicate':original+original.splitlines()[1]+'\n',
@@ -73,7 +73,7 @@ def main():
         blank_file.write_text(original+'\n',encoding='utf-8')
         assert not check(blank_file)[0], 'Server-compatible blank trailing lines are accepted'
     print('PASS checker: valid file accepted; duplicates/NaN/header/unit/empty/order errors rejected')
-    benchmark=ROOT/'benchmark/preprocessed_gps'
+    benchmark=ROOT/'benchmark/gps_csv'
     if benchmark.exists():
         provenance=json.loads((benchmark/'manifest.json').read_text(encoding='utf-8'))
         for name,digest in provenance['input_sha256'].items():

@@ -34,17 +34,17 @@ In the `Lab1` folder:
 
 ```powershell
 python -m pip install -r requirements.txt
-python WLSE_spp.py --reference dataset/NAV-HPPOSECEF.csv
-python WLSE_spp.py --mode gps --input-dir benchmark/preprocessed_gps --output-dir outputs/benchmark --submission G05_benchmark.csv
-python tools/check_submission.py outputs/benchmark/G05_benchmark.csv --week 2158 --epoch-file benchmark/preprocessed_gps/epochs.csv
+python WLSE_spp.py --reference example/NAV-HPPOSECEF.csv
+python WLSE_spp.py --mode gps --input-dir benchmark/gps_csv --output-dir outputs/benchmark --submission G05_benchmark.csv
+python tools/check_submission.py outputs/benchmark/G05_benchmark.csv --week 2158 --epoch-file benchmark/gps_csv/epochs.csv
 python tools/verify_package.py
 ```
 
 In MATLAB, with `Lab1` as the current folder:
 
 ```matlab
-rinex2csv('benchmark/UrbanNav-HK-Deep-Urban-1.ublox.f9p.obs', ...
-          'benchmark/UrbanNav_20210521_multiGNSS_clean.nav', ...
+rinex2csv('benchmark/urbannav_deep1.obs', ...
+          'benchmark/urbannav_deep1.nav', ...
           'outputs/benchmark_regenerated_inputs');
 ```
 
