@@ -68,6 +68,7 @@ AAE4203-S12627/
 │   ├── AAE4203 Lab2.pptx                        # Lab tutorial slides
 │   ├── MobilePDR.py                             # PDR algorithm implementation
 │   └── data/                                    # Sample datasets (RoundTrip, Square)
+├── Week10_SPP_RTK_Python/                       # Pure-Python SPP/RTK-float example and one-hour GPS dataset
 ├── UIDemo.html                                  # Smartphone IMU data collection demo
 └── AAE4203_Teaching_Plan_2026-27_Semester_1.pdf # Official teaching plan
 ```
@@ -79,6 +80,7 @@ AAE4203-S12627/
 Laboratory materials are released here as the semester progresses:
 
 - [Week 9](Lab1/) — Laboratory: GNSS Data Collection, Single Point Positioning and an Accuracy Challenge (Oct 30)
+- [Week 10](Week10_SPP_RTK_Python/) — Pure-Python SPP and carrier-phase RTK-float demo with real rover/base data (Nov 6)
 
 > Materials for upcoming weeks will be posted after each lecture.
 
@@ -127,4 +129,5 @@ Laboratory materials are released here as the semester progresses:
 - **Lab 1 Guide**: [GNSS Single Point Positioning (SPP) Analysis Pipeline](Lab1/Readme.md) · [Tutorial 2026/27 (PDF)](Lab1/AAE4203_26_27_S1_Lab_Tutorial.pdf)
 - **Lab 1 Leaderboard Platform**: [PolyU-TASLAB/AAE4203_ASN_2026](https://github.com/PolyU-TASLAB/AAE4203_ASN_2026)
 - **Lab 2 Guide**: [Inertial Navigation and PDR](Lab2/readme.md)
+- **Week 10 Python Demo**: [SPP and Carrier-Phase RTK Float](Week10_SPP_RTK_Python/)
 - **Previous Year (2025-26 Semester 1)**: [AAE4203-S12526](https://github.com/weisongwen/AAE4203-S12526)
